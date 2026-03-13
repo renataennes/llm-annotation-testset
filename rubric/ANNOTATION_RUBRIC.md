@@ -186,8 +186,8 @@ cases that caused disagreement and update the annotation notes above.
 | Extrinsic hallucination frequency | Lower | Higher |
 | Safety flag frequency | Comparable | Comparable |
 
-*These patterns were observed during the Dia 3 HaluEval exploration 
-and the tokenization notebook (Dia 2).*
+*These patterns were observed during Day 3 HaluEval exploration 
+and the tokenization notebook.*
 
 ---
 
