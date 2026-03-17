@@ -1,5 +1,5 @@
-> ## 📝 Bilingual (EN/PT) LLM annotation dataset with 100+ manually labeled 
-> ## prompt-response pairs across 6 categories and 5 quality dimensions.
+ ## 📝 Bilingual (EN/PT) LLM annotation dataset with 100+ manually labeled 
+ ## prompt-response pairs across 6 categories and 5 quality dimensions.
 
 **Stack:** Python · Pandas · HuggingFace Datasets  
 **Status:** 🚧 In progress — 30/100 pairs annotated
