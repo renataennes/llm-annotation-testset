@@ -1,7 +1,8 @@
-# 📝 Bilingual LLM Annotation Test Set — EN/PT
+> ## 📝 Bilingual (EN/PT) LLM annotation dataset with 100+ manually labeled 
+> ## prompt-response pairs across 6 categories and 5 quality dimensions.
 
-> **AI Model Evaluation Portfolio Project** | Renata Araújo  
-> Skills: Python · Annotation Design · Rubric Engineering · HuggingFace Datasets · NLP · Bilingual QA
+**Stack:** Python · Pandas · HuggingFace Datasets  
+**Status:** 🚧 In progress — 30/100 pairs annotated
 
 ---
 
