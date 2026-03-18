@@ -2,7 +2,7 @@
  ## prompt-response pairs across 6 categories and 5 quality dimensions.
 
 **Stack:** Python · Pandas · HuggingFace Datasets  
-**Status:** 🚧 In progress — 30/100 pairs annotated
+**Status:** 🚧 In progress — 68/100 pairs annotated
 
 ---
 
