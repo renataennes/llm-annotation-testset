@@ -1,0 +1,7 @@
+dimensao,kappa_simples,kappa_ponderado,status
+faithfulness,1.0,1.0,perfeito
+relevance,0.0,0.0,ok
+fluency,0.0,0.0,ok
+completeness,-0.111,-0.111,ok
+safety,1.0,1.0,perfeito
+hallucination_type,-0.111,,ok
