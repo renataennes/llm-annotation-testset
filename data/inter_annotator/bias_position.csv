@@ -1,0 +1,11 @@
+pair_id,verdict_original,verdict_reversed,verdict_reversed_norm,position_bias
+MIR-F1,A,B,A,False
+MIR-F2,A,B,A,False
+MIR-F3,A,B,A,False
+MIR-F4,A,B,A,False
+MIR-R1,A,B,A,False
+MIR-R2,A,B,A,False
+MIR-A1,A,B,A,False
+MIR-A2,A,B,A,False
+MIR-AM1,A,B,A,False
+MIR-C1,A,B,A,False

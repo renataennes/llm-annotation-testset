@@ -1,0 +1,11 @@
+pair_id,verdict,confidence_bias
+MIR-F1,A,True
+MIR-F2,A,True
+MIR-F3,A,True
+MIR-F4,A,True
+MIR-R1,A,True
+MIR-R2,A,True
+MIR-A1,A,True
+MIR-A2,A,True
+MIR-AM1,A,True
+MIR-C1,A,True

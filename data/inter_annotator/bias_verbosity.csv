@@ -1,0 +1,11 @@
+pair_id,len_en,len_pt,longer,winner,verbosity_bias
+MIR-F1,26,30,PT,EN,False
+MIR-F2,17,17,EQUAL,EN,False
+MIR-F3,25,23,EN,EN,True
+MIR-F4,16,17,PT,EN,False
+MIR-R1,21,23,PT,EN,False
+MIR-R2,27,28,PT,EN,False
+MIR-A1,25,25,EQUAL,EN,False
+MIR-A2,29,32,PT,EN,False
+MIR-AM1,36,29,EN,EN,True
+MIR-C1,41,39,EN,EN,True
