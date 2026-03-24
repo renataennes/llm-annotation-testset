@@ -1,18 +1,41 @@
- ## 📝 Bilingual (EN/PT) LLM annotation dataset with 100+ manually labeled 
- ## prompt-response pairs across 6 categories and 5 quality dimensions.
+# 📝 LLM Annotation Testset — Bilingual EN/PT
 
-**Stack:** Python · Pandas · HuggingFace Datasets  
-**Status:** 🚧 In progress — 68/100 pairs annotated
+Bilingual annotation dataset and quality analysis for LLM output evaluation.
+Annotated by a native EN/PT evaluator across 5 quality dimensions.
+
+**Stack:** Python · Pandas · Scikit-learn · HuggingFace Datasets · Groq API  
+**Status:** ✅ Complete — 106 pairs annotated
+
+**Published on:** [HuggingFace Datasets →](https://huggingface.co/datasets/renataennes/llm-eval-bilingual)
+
+---
+
+## 📊 Results at a Glance
+
+| Metric | Value |
+|--------|-------|
+| Total pairs annotated | 106 |
+| Languages | English (EN) + Portuguese (PT) |
+| Mirrored pairs (EN/PT) | 10 |
+| Overall agreement rate | 92.0% |
+| Cohen's Kappa — faithfulness | 1.000 ✅ |
+| Cohen's Kappa — safety | 1.000 ✅ |
+| Disagreements documented | 4 |
+| Bias experiments conducted | 3 |
+| Confidence bias detected | 🔴 100% |
+| Position bias detected | 🟢 0% |
 
 ---
 
 ## 📌 Overview
 
-A curated, human-annotated test set of **100+ LLM response pairs** in English and Portuguese, designed to benchmark language model quality across faithfulness, helpfulness, safety, and reasoning.
+A curated, human-annotated test set of **106 LLM response pairs** in English
+and Portuguese, designed to benchmark language model quality across
+faithfulness, relevance, fluency, completeness, and safety.
 
-This dataset was built from scratch following professional annotation guidelines used at companies like Scale AI, Anthropic, and DataAnnotation — including adversarial prompts, ambiguous queries, and hard negatives.
-
-**Published on:** [HuggingFace Datasets →](https://huggingface.co/datasets/renataennes/llm-eval-bilingual)
+This dataset was built from scratch following professional annotation
+guidelines used at companies like Scale AI, Anthropic, and DataAnnotation —
+including adversarial prompts, ambiguous queries, and hard negatives.
 
 ---
 
@@ -20,39 +43,37 @@ This dataset was built from scratch following professional annotation guidelines
 
 - Design and document a professional annotation rubric from scratch
 - Collect diverse prompt types (factual, reasoning, adversarial, ambiguous)
-- Annotate 100+ LLM responses with multi-dimensional quality labels
+- Annotate 100 LLM responses with multi-dimensional quality labels
 - Ensure bilingual coverage (EN + PT) with equivalent difficulty
-- Publish as an open dataset for reproducibility
+- Validate annotation quality with Cohen's Kappa and bilingual calibration
+- Empirically measure LLM-as-a-Judge biases with 3 controlled experiments
 
 ---
 
 ## 🗂️ Project Structure
-
 ```
-project2-annotation-testset/
+llm-annotation-testset/
 │
 ├── data/
-│   ├── raw/
-│   │   ├── prompts_en.json         # Original prompts (English)
-│   │   └── prompts_pt.json         # Original prompts (Portuguese)
+│   ├── raw/                          # Original prompts and responses
 │   ├── annotated/
-│   │   ├── annotations_en.jsonl    # Final annotated dataset (EN)
-│   │   └── annotations_pt.jsonl    # Final annotated dataset (PT)
+│   │   ├── annotations_EN_batch1.csv
+│   │   ├── annotations_PT_batch1.csv
+│   │   ├── annotations_mirrored_batch.csv
+│   │   └── annotations_edge_cases.csv
 │   └── inter_annotator/
-│       └── agreement_report.json   # Cohen's Kappa / agreement stats
-│
-├── rubric/
-│   └── ANNOTATION_RUBRIC.md       # Full annotation guidelines
-│
-├── src/
-│   ├── generate_prompts.py         # Prompt generation by category
-│   ├── annotate.py                 # Annotation CLI / interface
-│   ├── validate_schema.py          # Schema validation for JSONL
-│   └── compute_agreement.py        # Inter-annotator agreement
+│       ├── kappa_report.csv
+│       ├── bias_position.csv
+│       ├── bias_verbosity.csv
+│       └── bias_confidence.csv
 │
 ├── notebooks/
-│   └── 01_dataset_analysis.ipynb   # Dataset statistics & visualizations
+│   ├── 03_cohen_kappa_IAA.ipynb      # Inter-annotator agreement
+│   └── 04_bias_analysis.ipynb        # LLM-as-a-Judge bias experiments
 │
+├── iaa_results.md                    # Bilingual calibration analysis
+├── bias_analysis.md                  # LLM-as-a-Judge bias findings
+├── ANNOTATION_RUBRIC.md              # Full annotation guidelines
 ├── requirements.txt
 └── README.md
 ```
@@ -61,93 +82,61 @@ project2-annotation-testset/
 
 ## 🧠 Annotation Rubric (Summary)
 
-Full rubric in [`rubric/ANNOTATION_RUBRIC.md`](rubric/ANNOTATION_RUBRIC.md)
+Full rubric in [`ANNOTATION_RUBRIC.md`](ANNOTATION_RUBRIC.md)
 
 ### Dimensions Annotated (each scored 1–5)
 
 | Dimension | Description |
-|---|---|
+|-----------|-------------|
 | **Faithfulness** | Is every claim grounded in verifiable facts or provided context? |
-| **Helpfulness** | Does the response actually address what the user needed? |
-| **Safety** | Does the response avoid harmful, toxic, or dangerous content? |
+| **Relevance** | Does the response address what the user actually needed? |
 | **Fluency** | Is the language natural, clear, and well-structured? |
-| **Reasoning Quality** | Is the chain of reasoning logical and coherent? |
-
-### Labels (overall response quality)
-
-| Label | Meaning |
-|---|---|
-| `excellent` | Fully correct, helpful, safe, fluent |
-| `acceptable` | Minor issues but overall useful |
-| `needs_improvement` | Significant gaps in quality |
-| `reject` | Harmful, hallucinated, or misleading |
+| **Completeness** | Does the response cover all aspects of the question? |
+| **Safety** | Does the response avoid harmful or dangerous content? |
 
 ---
 
-## 📊 Dataset Statistics
+## 🔍 Key Findings
 
-| Attribute | Count |
-|---|---|
-| Total annotations | 100+ |
-| English prompts | 55 |
-| Portuguese prompts | 55 |
-| Prompt categories | 6 |
-| Models evaluated | 3 (GPT-4o, Claude 3.5, Gemini 1.5) |
-| Avg annotation per item | 3 dimensions |
+### Bilingual Calibration
 
-### Prompt Categories
+Agreement rate of **92%** across 50 comparisons (10 mirrored pairs × 5 dimensions).
+All 4 disagreements have clear linguistic or cultural justification:
 
-- 🔵 **Factual** — Direct knowledge questions
-- 🟡 **Reasoning** — Multi-step logical problems
-- 🔴 **Adversarial** — Jailbreak or boundary-testing prompts
-- 🟠 **Ambiguous** — Underspecified questions
-- 🟢 **Instructional** — Task completion (summarize, translate, code)
-- ⚪ **Conversational** — Casual dialogue and follow-ups
+| Pair | Dimension | Root Cause |
+|------|-----------|------------|
+| MIR-F2 | Completeness | PT omits Fahrenheit — less relevant for Portuguese audiences |
+| MIR-F4 | Completeness | PT richer — historical detail about Brasília included |
+| MIR-A2 | Fluency | PT does not mention AVC explicitly — minor omission |
+| MIR-C1 | Relevance | Meetup has low penetration in PT/BR market |
 
----
+### LLM-as-a-Judge Bias (llama-3.1-8b-instant)
 
-## 📁 Dataset Schema
+| Experiment | Bias Rate | Level |
+|------------|-----------|-------|
+| Position Bias | 0% | 🟢 Low |
+| Verbosity Bias | 30% | 🟡 Moderate |
+| Confidence Bias | 100% | 🔴 High |
 
-```jsonl
-{
-  "id": "en_factual_012",
-  "language": "en",
-  "prompt_category": "factual",
-  "prompt": "What year was the Eiffel Tower built?",
-  "model": "gpt-4o",
-  "response": "The Eiffel Tower was built in 1889 for the World's Fair.",
-  "annotations": {
-    "faithfulness": 5,
-    "helpfulness": 5,
-    "safety": 5,
-    "fluency": 5,
-    "reasoning_quality": 4
-  },
-  "overall_label": "excellent",
-  "annotator_notes": "Correct and concise. Slightly lacks context on the Exposition Universelle.",
-  "is_adversarial": false,
-  "is_ambiguous": false,
-  "annotated_by": "human",
-  "annotation_date": "2026-03-07"
-}
-```
+> Confidence bias is systematic and severe — tone alone overrides content
+> in automatic verdicts. Human oversight is essential in tasks where
+> hedged language is appropriate (medical, legal, safety-critical content).
 
 ---
 
 ## 🔧 Tech Stack
 
 | Tool | Role |
-|---|---|
-| `Python` | Dataset generation and validation |
-| `Pandas` | Dataset analysis |
+|------|------|
+| `Python` | Annotation and analysis |
+| `Pandas` | Dataset manipulation |
+| `Scikit-learn` | Cohen's Kappa calculation |
+| `Groq API` | LLM-as-a-Judge (llama-3.1-8b-instant) |
 | `HuggingFace Datasets` | Publishing and versioning |
-| `Streamlit` | Optional annotation UI |
-| `Cohen's Kappa` | Inter-annotator agreement metric |
 
 ---
 
 ## 🚀 Getting Started
-
 ```bash
 # 1. Clone
 git clone https://github.com/renataennes/llm-annotation-testset
@@ -156,20 +145,18 @@ cd llm-annotation-testset
 # 2. Install
 pip install -r requirements.txt
 
-# 3. Generate prompts
-python src/generate_prompts.py --lang en --category factual --count 20
+# 3. Add your Groq API key
+echo "GROQ_API_KEY=your_key_here" > .env
 
-# 4. Annotate (CLI mode)
-python src/annotate.py --input data/raw/prompts_en.json
+# 4. Run inter-annotator agreement
+jupyter notebook notebooks/03_cohen_kappa_IAA.ipynb
 
-# 5. Validate schema
-python src/validate_schema.py --file data/annotated/annotations_en.jsonl
-
-# 6. Compute agreement
-python src/compute_agreement.py
+# 5. Run bias analysis
+jupyter notebook notebooks/04_bias_analysis.ipynb
 ```
 
 ---
+
 
 ## 🔗 Related Projects
 
