@@ -6,7 +6,7 @@ Annotated by a native EN/PT evaluator across 5 quality dimensions.
 **Stack:** Python · Pandas · Scikit-learn · HuggingFace Datasets · Groq API  
 **Status:** ✅ Complete — 106 pairs annotated
 
-**Published on:** [HuggingFace Datasets →](https://huggingface.co/datasets/renataennes/llm-eval-bilingual)
+**Published on:** [HuggingFace Datasets →](https://huggingface.co/datasets/renataaraujoe/Bilingual-LLM-Eval-106)
 
 ---
 
