@@ -160,8 +160,8 @@ jupyter notebook notebooks/04_bias_analysis.ipynb
 
 ## 🔗 Related Projects
 
-- [Project 1 — RAG Hallucination Detector](../project1-rag-hallucination/)
-- [Project 3 — LLM Eval Dashboard](../project3-eval-dashboard/)
+- [Project 1 — RAG Hallucination Detector](https://github.com/renataennes/rag-hallucination-detector))
+- [Project 3 — LLM Eval Dashboard](https://github.com/renataennes/llm-eval-dashboard))
 
 ---
 
